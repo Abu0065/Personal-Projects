@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - My Netflix Clone</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <style>
+        /* Login-specific styles */
+        body {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzE0MTQxNDtzdG9wLW9wYWNpdHk6MSIgLz4KICAgIDxzdG9wIG9mZnNldD0iNTAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZTUwOTE0O3N0b3Atb3BhY2l0eTowLjMiIC8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxNDE0MTQ7c3RvcC1vcGFjaXR5OjEiIC8+CiAgPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSJ1cmwoI2JnR3JhZGllbnQpIi8+Cjwvc3ZnPgo=');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 50px;
+        }
+
+        .login-box {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .login-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #e50914;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .login-box .form-group input {
+            padding: 18px 20px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-box .form-group input:focus {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            accent-color: #e50914;
+        }
+
+        .forgot-password {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #e50914;
+        }
+
+        .login-btn {
+            margin-bottom: 30px;
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .signup-link {
+            text-align: center;
+            color: #cccccc;
+        }
+
+        .signup-link a {
+            color: #e50914;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            color: #f40612;
+            text-decoration: underline;
+        }
+
+        .social-login {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .social-login p {
+            margin-bottom: 20px;
+            color: #cccccc;
+            position: relative;
+        }
+
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .social-login p::before {
+            left: 0;
+        }
+
+        .social-login p::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-btn:hover {
+            border-color: #e50914;
+            background: rgba(229,9,20,0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: linear-gradient(to bottom, rgba(20,20,20,0.9), rgba(0,0,0,0.95));
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
+
+        .footer a {
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">NETFLIX</div>
+        <ul class="nav-links">
+            <li><a href="netflix-clone.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">Sign In</h1>
+            
+            <form>
+                <div class="form-group">
+                    <label for="email">Email or Username</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+
+            <div class="signup-link">
+                <p>New to Netflix Clone? <a href="#">Sign up now</a></p>
+            </div>
+
+            <div class="social-login">
+                <p>Or sign in with</p>
+                <div class="social-buttons">
+                    <button class="social-btn">Google</button>
+                    <button class="social-btn">Facebook</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 My Netflix Clone. Made by a passionate developer!</p>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+        <a href="netflix-clone.html">Home</a>
+    </footer>
+</body>
+</html>
